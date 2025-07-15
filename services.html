@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-image: url('bgservices.jpeg'); /* ✅ Replace this with your background image */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Dark overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85); /* Adjust darkness here */
+      z-index: -1;
+    }
+
+    #logo {
+        position: fixed;
+        top: 7px;
+        left: 0px;
+        width: 150px;
+        z-index: 999;
+    }
+
+    #menu-btn {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      font-size: 30px;
+      color: #d4c137;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 6;
+    }
+
+    #sidebar {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      transition: right 0.3s ease;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar.active {
+      right: 0;
+    }
+
+    #sidebar nav {
+      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #sidebar a {
+      text-decoration: none;
+      color: white;
+      padding: 15px 20px;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    #sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .connect-label {
+      font-size: 16px;
+      color: #ccc;
+      padding: 15px 20px 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 0 20px;
+    }
+
+    .social-icons img {
+      width: 28px;
+      height: 28px;
+      filter: brightness(100%);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    .page-title {
+      text-align: center;
+      margin-top: 80px;
+      font-size: 40px;
+      font-weight: bold;
+      color: #d4c137;
+    }
+
+    .services-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 40px;
+      gap: 30px;
+    }
+
+    .row {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .service-box {
+      background-color: #1a1a1a;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 700px;
+      text-align: center;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .service-box:hover {
+      background-color: #262626;
+      transform: translateY(-5px);
+    }
+
+    .service-box h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #d4c137;
+    }
+
+    .service-box p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .ultimate {
+      border: 5px solid gray;
+      background-color: #202020;
+    }
+
+    .ultimate h3 {
+      color: #ffcc00;
+    }
+
+    .cta-box {
+      background-color: #1a1a1a;
+      border: 5px solid #d4c137;
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 700px;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .cta-box h3 {
+      color: #d4c137;
+      margin-bottom: 10px;
+    }
+
+    .cta-box p {
+      color: #ccc;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .register-button {
+      padding: 12px 30px;
+      background-color: #d4c137;
+      color: black;
+      font-weight: bold;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .register-button:hover {
+      background-color: #e5d347;
+    }
+
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 600px) {
+      .page-title {
+        font-size: 28px;
+      }
+
+      .service-box, .cta-box {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Logo and Menu -->
+  <a href="home.html"><img src="logo.png" alt="Overlay Logo" id="logo" /></a>
+  <button id="menu-btn">&#9776;</button>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <nav>
+      <a href="home.html">HOME</a>
+      <a href="services.html">Services</a>
+      <a href="aboutus.html">About Us</a>
+      <a href="contactus.html">Contact Us</a>
+      <div class="connect-label">Connect with Us</div>
+      <div class="social-icons">
+          <a href="https://www.instagram.com/asia.bodybuilding"><img src="instagram.png" alt="Instagram" /></a>
+          <a href="https://www.facebook.com/share/14EFykSns4c/"><img src="facebook.png" alt="Facebook" /></a>
+          <a href="https://m.youtube.com/@asia.bodybuilding"><img src="youtube.png" alt="YouTube" /></a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Title -->
+  <h1 class="page-title">Our Services</h1>
+  <hr style="width: 75%; margin: 0 auto; border: 1px solid #d4c137;">
+
+  <!-- Services Section -->
+  <div class="services-wrapper">
+    <div class="row">
+      <div class="service-box">
+        <h3>NORMAL PHOTO</h3>
+        <p>Capture your best poses with clean, high-quality images. This package includes standard lighting and basic editing—perfect for quick shoots or personal use.</p>
+      </div>
+      <div class="service-box">
+        <h3>PREMIUM PHOTO</h3>
+        <p>Step up your visuals with professionally styled photos. This package includes advanced retouching, creative lighting setups, and direction to bring out every detail.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="service-box">
+        <h3>NORMAL VIDEO</h3>
+        <p>A simple yet striking video that highlights your physique in motion. Includes a single camera angle and basic color grading.</p>
+      </div>
+      <div class="service-box">
+        <h3>PREMIUM VIDEO</h3>
+        <p>A cinematic, multi-angle video with pro-level editing, transitions, and audio. Ideal for competition prep, brand content, or high-impact social media posts.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="service-box ultimate">
+        <h3>ULTIMATE PACKAGE</h3>
+        <p>Get everything in one bundle: premium photo and video sessions, behind-the-scenes shots, and priority editing. Walk away with a full set of polished content ready to impress.</p>
+      </div>
+    </div>
+
+    <!-- Register CTA -->
+    <hr style="width: 75%; margin: 0 auto; border: 1px solid #d4c137;">
+    <div class="cta-box">
+      <h3>WANT TO REGISTER?</h3>
+      <p>If you want to avail our services and to see the upcoming competitions, please click the register button below.</p>
+      <a href="https://lnk.at/BST-AB" class="register-button">Register</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>BST International Company Limited</strong></p>
+    <p>Office: Sham Shui Po Sports Centre, Hongkong</p>
+    <p>Phone Number: 69696969696</p>
+  </footer>
+
+  <!-- JS Toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
